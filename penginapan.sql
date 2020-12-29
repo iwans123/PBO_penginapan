@@ -2,8 +2,8 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 28, 2020 at 04:34 PM
+-- Host: 127.0.0.1
+-- Generation Time: Dec 29, 2020 at 10:26 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -34,6 +34,15 @@ CREATE TABLE `kamar` (
   `kelas_id` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kamar`
+--
+
+INSERT INTO `kamar` (`id`, `no_kamar`, `status_id`, `kelas_id`) VALUES
+(1, 'A01', 2, 1),
+(2, 'B01', 2, 2),
+(3, 'C03', 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +55,15 @@ CREATE TABLE `kelas` (
   `harga` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`id`, `nama_kelas`, `harga`) VALUES
+(1, 'REGULER', 100000),
+(2, 'VIP', 300000),
+(3, 'VVIP', 500000);
+
 -- --------------------------------------------------------
 
 --
@@ -54,8 +72,16 @@ CREATE TABLE `kelas` (
 
 CREATE TABLE `role` (
   `id` tinyint(1) NOT NULL,
-  `nama_role` varchar(10) NOT NULL
+  `nama_role` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `nama_role`) VALUES
+(1, 'ADMIN'),
+(2, 'RESEPSIONIS');
 
 -- --------------------------------------------------------
 
@@ -67,6 +93,14 @@ CREATE TABLE `status` (
   `id` tinyint(1) NOT NULL,
   `nama_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `nama_status`) VALUES
+(1, 'ADA'),
+(2, 'KOSONG');
 
 -- --------------------------------------------------------
 
@@ -96,12 +130,20 @@ CREATE TABLE `user` (
   `id` int(5) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
-  `Jenis_kelamin` enum('L','P') NOT NULL,
+  `jenis_kelamin` enum('L','P') NOT NULL,
   `no.telp` varchar(50) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `id_role` tinyint(1) NOT NULL
+  `role_id` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `nama`, `alamat`, `jenis_kelamin`, `no.telp`, `username`, `password`, `role_id`) VALUES
+(1, 'BIMA SETYAWAN', 'TA', 'L', '081336797499', 'IWAN', 'IWAN', 1),
+(2, 'DENTA MUHAMMAD FEBRISUDA', 'NG', 'L', '081336797499', 'IWAN', 'IWAN', 2);
 
 --
 -- Indexes for dumped tables
@@ -146,7 +188,7 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_role` (`id_role`);
+  ADD KEY `role_id` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -156,7 +198,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
@@ -168,7 +210,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -178,31 +220,21 @@ ALTER TABLE `user`
 -- Constraints for table `kamar`
 --
 ALTER TABLE `kamar`
-  ADD CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`id`) REFERENCES `transaksi` (`kamar_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kamar_ibfk_2` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `kelas`
+-- Constraints for table `transaksi`
 --
-ALTER TABLE `kelas`
-  ADD CONSTRAINT `kelas_ibfk_1` FOREIGN KEY (`id`) REFERENCES `kamar` (`kelas_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `role`
---
-ALTER TABLE `role`
-  ADD CONSTRAINT `role_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `status`
---
-ALTER TABLE `status`
-  ADD CONSTRAINT `status_ibfk_1` FOREIGN KEY (`id`) REFERENCES `kamar` (`status_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`kamar_id`) REFERENCES `kamar` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id`) REFERENCES `transaksi` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
