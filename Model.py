@@ -1,20 +1,20 @@
 from Connector import DBconnector
 
 class Model:
-    def __init__(self,tabel,kolom):
+    def __init__(self,table,column):
         self.table = table
         self.column = column
 
     def read(self):
         connect = DBconnector()
-        query = "SELECT * from "+self.tabel
+        query = "SELECT * from " +self.table
         result = connect.executeRead(query)
         print (result)
 
     def insert(self):
         connect = DBconnector()
         query = "INSERT INTO "+self.table+" ("
-        for column ins self.column:
+        for column in self.column:
             query += column+","
         query = query[:-1]
         query += ") VALUES ("
