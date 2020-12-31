@@ -1,14 +1,11 @@
 from Model import Model
+from transaksi import transaksi
 from Connector import DBconnector
 
-class kamar(Model):
+class kamar(transaksi):
     def __init__(self):
         super(). __init__("kamar",
         ["no_kamar","status_id","kelas_id"])
-
-    def insertkamar(self):
-        kamar1 = kamar()
-        kamar1.insert()
 
     def cekamar (self):
         connect = DBconnector()
@@ -17,11 +14,11 @@ class kamar(Model):
         print (result)
 
 
-kamar1 = kamar()
-kamar1.cekamar()
+# kamar1 = kamar()
+# kamar1.cekamar()
 
 # kamar1 = kamar()
 # kamar1.read()
 # kamar1.insert(["A03","2","1"])
 # Model.insert("A02","2","1")
-insertkamar(["A03","2","1"])
+transaksi1.transaksi()

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2020 at 10:26 PM
+-- Generation Time: Dec 31, 2020 at 08:26 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -41,7 +41,8 @@ CREATE TABLE `kamar` (
 INSERT INTO `kamar` (`id`, `no_kamar`, `status_id`, `kelas_id`) VALUES
 (1, 'A01', 2, 1),
 (2, 'B01', 2, 2),
-(3, 'C03', 2, 3);
+(3, 'C03', 2, 3),
+(4, 'A02', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -111,14 +112,21 @@ INSERT INTO `status` (`id`, `nama_status`) VALUES
 CREATE TABLE `transaksi` (
   `id` int(5) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `no.ktp` varchar(50) NOT NULL,
-  `no.telp` varchar(50) NOT NULL,
+  `no_ktp` varchar(50) NOT NULL,
+  `no_telp` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `kamar_id` int(5) NOT NULL,
   `cek_in` datetime NOT NULL,
   `cek_out` datetime NOT NULL,
   `user_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `nama`, `no_ktp`, `no_telp`, `alamat`, `kamar_id`, `cek_in`, `cek_out`, `user_id`) VALUES
+(1, 'iwan', '123', '123', 'TA', 1, '2020-12-31 00:00:00', '2021-01-05 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +141,7 @@ CREATE TABLE `user` (
   `jenis_kelamin` enum('L','P') NOT NULL,
   `no.telp` varchar(50) NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `passw` varchar(32) NOT NULL,
   `role_id` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -141,9 +149,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `alamat`, `jenis_kelamin`, `no.telp`, `username`, `password`, `role_id`) VALUES
+INSERT INTO `user` (`id`, `nama`, `alamat`, `jenis_kelamin`, `no.telp`, `username`, `passw`, `role_id`) VALUES
 (1, 'BIMA SETYAWAN', 'TA', 'L', '081336797499', 'IWAN', 'IWAN', 1),
-(2, 'DENTA MUHAMMAD FEBRISUDA', 'NG', 'L', '081336797499', 'IWAN', 'IWAN', 2);
+(2, 'DENTA MUHAMMAD FEBRISUDA', 'NG', 'L', '081336797499', 'DENS', 'DENS', 2);
 
 --
 -- Indexes for dumped tables
@@ -198,13 +206,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
