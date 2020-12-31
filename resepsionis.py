@@ -8,7 +8,7 @@ class resepsionis(Model):
     def cekamar (self):
         connect = DBconnector()
         query = "SELECT no_kamar,kelas.nama_kelas as kelas FROM kamar JOIN kelas ON kelas.id=kamar.kelas_id"
-        result = connect.execute(query)
+        result = connect.executeRead(query)
         print (result)
 
 

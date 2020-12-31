@@ -12,15 +12,15 @@ class transaksi(Model):
         result = connect.executeRead(query)
         print (result)
 
-    def total(self):
-        connect =DBconnector()
-        query = "SELECT SUM(DATEDIFF(cek_out,cek_in)*kelas.harga)as TOTAL FROM transaksi JOIN kamar ON transaksi.kamar_id = kamar.id JOIN kelas ON kamar.kelas_id = kelas.id"
-        result = connect.executeRead(query)
-        print (result)
+    # def total(self):
+    #     connect =DBconnector()
+    #     query = "SELECT SUM(DATEDIFF(cek_out,cek_in)*kelas.harga)as TOTAL FROM transaksi JOIN kamar ON transaksi.kamar_id = kamar.id JOIN kelas ON kamar.kelas_id = kelas.id"
+    #     result = connect.executeRead(query)
+    #     print (result)
 
     
 transaksi1 = transaksi()
 # transaksi1.insert(["","iwan","123","123","TA","1","2020-12-31","2021-1-5","1"])
-transaksi1.transaksi()
+# transaksi1.transaksi()
 # transaksi1.total()
 # transaksi1.delete(2)

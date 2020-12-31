@@ -7,6 +7,11 @@ class login(Model):
     
     def username (inputuser,inputpassw):
         connect = DBconnector()
-        query = "SELECT username,passw FROM user WHERE username = '%s' and passw ='%s'" %(inputuser,inputpassw)
+        query = "SELECT nama,role.nama_role FROM user JOIN role ON user.role_id = role.id WHERE username = '%s' and passw ='%s'" %(inputuser,inputpassw)
         result = connect.executeRead(query)
-        print (result)
+        # print(result)
+        print (result[0])
+        if (result[0][1]) == "RESEPSIONIS":
+            print("\tHALLO RESEPSIONIS")
+        elif (result[0][1]) == "ADMIN":
+            print("\tHALLO ADMIN")
