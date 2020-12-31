@@ -11,7 +11,7 @@ class Model:
         result = connect.executeRead(query)
         print (result)
 
-    def insert(self):
+    def insert(self,values):
         connect = DBconnector()
         query = "INSERT INTO "+self.table+" ("
         for column in self.column:

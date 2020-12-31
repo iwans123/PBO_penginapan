@@ -16,7 +16,7 @@ class DBconnector():
             if self.db.is_connected():
                 cursor = self.db.cursor()
                 cursor.execute(query)
-                self.connection.commit()
+                self.db.commit()
         except Error as e:
             print (e)
 
