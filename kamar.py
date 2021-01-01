@@ -18,6 +18,7 @@ class kamar(Model):
             print(result[i])
             
     def inset_kamar():
+        kamar().cekamar()
         no_kamar = input("no kamar : ")
         status().read()
         status_id = input("status (id) : ")
@@ -36,6 +37,7 @@ class kamar(Model):
         kamar().update([no_kamar,status_id,kelas_id],inputanID)
         
     def delete_kamar():
+        kamar().cekamar()
         inputanID = int(input("masukkan id kamar yang akan dihapus : "))
         kamar().delete(inputanID)
 

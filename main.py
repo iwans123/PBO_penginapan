@@ -65,7 +65,8 @@ class main:
             print("""
             1.data user
             2.data kamar
-            3.data transaksi    
+            3.data transaksi 
+            4.kembali   
             """)
             menu_cek = int(input("masukkan pilihan data : "))
             if menu_cek == 1:
@@ -80,8 +81,10 @@ class main:
                 transaksi().read()
                 print(input("PRESS ENTER TO CONTINUE"))
                 admin.menu_admin()
+            elif menu_cek == 4:
+                main.menu_admin()
             else :
-                print("data yang anda masukkan salah !!!")
+                print("data yang anda masukkan tidak sesuai !!!")
                 print(input("\nPRESS ENTER TO CONTINUE"))
                 main.menu_admin()
         elif menu_admin == 2:
@@ -89,7 +92,8 @@ class main:
             print("""
             1.data user
             2.data kamar
-            3.data transaksi    
+            3.data transaksi
+            4.kembali menu admin
             """)
             menu_insert = int(input("masukkan pilihan data : "))
             if menu_insert == 1:
@@ -104,8 +108,10 @@ class main:
                 transaksi.insert_transaksi()
                 print(input("PRESS ENETER TO CONTINUE"))
                 main.menu_admin()
+            elif menu_insert == 4:
+                main.menu_admin()
             else :
-                print("data yang anda masukkan salah !!!")
+                print("data yang anda masukkan tidak sesuai !!!")
                 print(input("\nPRESS ENTER TO CONTINUE"))
                 main.menu_admin()
         elif menu_admin == 3:
@@ -113,7 +119,8 @@ class main:
             print("""
             1.data user
             2.data kamar
-            3.data transaksi    
+            3.data transaksi
+            4.kembali menu admin
             """)
             menu_update = int(input("masukkan pilihan data : "))
             if menu_update == 1:
@@ -128,31 +135,47 @@ class main:
                 transaksi.update_transaksi()
                 print(input("PRESS ENTER TO CONTINUE"))
                 main.menu_admin()
+            elif menu_update == 4:
+                main.menu_admin()
+            else :
+                print ("\tdata yand anda masukkan tidak sesuai !!!")
+                print(input("\tPRESS ENTER TO CONTINUE"))
+                main.menu_admin()
         elif menu_admin ==4:
             print("\t===MENU===")
             print("""
             1.data user
             2.data kamar
-            3.data transaksi    
+            3.data transaksi 
+            4.kembali menu admin
             """)
             menu_delete = int(input("masukka pilihan data : "))
             if menu_delete == 1:
-                user().read()
                 user.delete_user()
                 print(input("PRESS ENTER TO CONTINUE"))
                 main.menu_admin()
             elif menu_delete == 2:
-                kamar().read()
-                kamar().delete()
+                kamar.delete_kamar()
                 print(input("PRESS ENTER TO CONTINUE"))
                 main.menu_admin()
             elif menu_delete == 3:
-                transaksi().read()
-                transaksi().delete()
+                transaksi.delete_transaksi()
                 print(input("PRESS ENTER TO CONTINUE"))
                 main.menu_admin()
+            elif menu_delete == 4:
+                main.menu_admin()
+            else :
+                print ("\tdata yand anda masukkan tidak sesuai !!!")
+                print(input("\tPRESS ENTER TO CONTINUE"))
+                main.menu_admin()
+                
         elif menu_admin == 5:
             main.main()
+            
+        else :
+            print ("\tdata yand anda masukkan tidak sesuai !!!")
+            print(input("\tPRESS ENTER TO CONTINUE"))
+            main.menu_admin()
                 
     def main():
         print("\t===LOGIN===")

@@ -8,7 +8,7 @@ class user(Model):
     def insert_user():
         nama = input("nama : ")
         alamat = input("alamat : ")
-        jeni_kelamin = input("jenis kelamin : ")
+        jeni_kelamin = input("jenis kelamin (L/P): ")
         no_telp = input("no_telp : ")
         username = input("username : ")
         passw = input("password : ")
@@ -16,10 +16,12 @@ class user(Model):
         user().insert([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id])
         
     def update_user():
+        print("\t===DAFTAR USER===")
+        user().read()
         inputanID = int(input("masukkan id user yang akan di update : "))
         nama = input("nama : ")
         alamat = input("alamat : ")
-        jeni_kelamin = input("jenis kelamin : ")
+        jeni_kelamin = input("jenis kelamin (L/P): ")
         no_telp = input("no_telp : ")
         username = input("username : ")
         passw = input("password : ")
@@ -27,6 +29,7 @@ class user(Model):
         user().update([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id],inputanID)
         
     def delete_user():
+        user().read()
         inputanID = int(input("masukkan id user yang akan dihapus : "))
         user().delete(inputanID)
         
