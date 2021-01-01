@@ -26,5 +26,9 @@ class user(Model):
         role_id = input("1.ADMIN / 2.RESEPSIONIS \t : ")
         user().update([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id],inputanID)
         
+    def delete_user():
+        inputanID = int(input("masukkan id user yang akan dihapus : "))
+        user().delete(inputanID)
+        
 # user1 = resepsionis()
 # user1.read()

@@ -13,6 +13,7 @@ class transaksi(Model):
         query = "SELECT nama,no_ktp,no_telp,alamat,kamar.no_kamar,kelas.nama_kelas,kelas.harga,DATEDIFF(cek_out,cek_in)as selisih,(DATEDIFF(cek_out,cek_in)*(kelas.harga))as TOTAL from transaksi JOIN kamar ON kamar.id = transaksi.kamar_id JOIN kelas ON kamar.kelas_id = kelas.id"
         result = connect.executeRead(query)
         # print (result)
+        print("[nama][no_ktp][no_telepon][alamat][kamar][kelas][harga][waktu][total]")
         for i in range (len(result)):
             print (result[i])
     
@@ -27,24 +28,47 @@ class transaksi(Model):
         cek_out = input("\tcek_out : ")
         user_id = input("\tuser (id) : ")
         transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
+        
+    def update_transaksi():
+        print("[id][nama][no_ktp][no_telp][alamat][kamar_id]        [cek_in]                        [cek_out]       [user_id]")
+        transaksi().read()
+        inputanID = int(input("masukkan id transaksi yang akan diupdate : "))
+        nama = input("\tnama : ")
+        no_ktp = input("\tno_ktp : ")
+        no_telp = input("\tno_telp : ")
+        alamat = input("\talamat : ")
+        kamar_id = input("\tkamar (id) : ")
+        cek_in = input("\tcek_in : ")
+        cek_out = input("\tcek_out : ")
+        user_id = input("\tuser (id) : ")
+        transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id],inputanID)
+    
+    def delete_transaksi():
+        inputanID = int(input("masukkan id transaksi yang akan dihapus : "))
+        transaksi().delete(inputanID)
 
     
     def menu_resepsionis():
         print("\t\tHALLO RESEPSIONIS")
-        print("\t\t===transaksi===")
+        print("\t\t===menu transaksi===")
         print ("""
             1.masukkan transaksi
             2.cek transaksi
+            3.logout
             """)
         menutransaksi = int(input("masukkan pilahan transaksi : "))
         if menutransaksi == 1:
             print("\t===DAFTAR KAMAR===")
             kamar().cekamar()
             nama = input("\tnama : ")
-            no_ktp = input("\tno_telp : ")
-            no_telp = input("\tno_kamar : ")
+            no_ktp = input("\tno_ktp : ")
+            no_telp = input("\tno_telp : ")
             alamat = input("\talamat : ")
-            kamar_id = input("\tkamar_id")
+            print ("""
+                   1.REGULER (Rp.100.000)
+                   2.VIP     (Rp.300.000)
+                   3.VVIP    (Rp.500.000)""")
+            kamar_id = input("\tkamar (id)")
             cek_in = input("\tcek_in : ")
             cek_out = input("\tcek_out : ")
             print("\t===HALLO RESEPSIONIS===")
@@ -53,6 +77,7 @@ class transaksi(Model):
         elif menutransaksi == 2:
             transaksi.total()
             transaksi.menu_resepsionis()
+            
             
     def menu_admin():
         print("\t===HALLO ADMIN===")
@@ -107,6 +132,7 @@ class transaksi(Model):
                 kamar.update_kamar()
                 transaksi.menu_admin()
             elif menu_update == 3:
+                transaksi.update_transaksi()
                 transaksi.menu_admin()
                 
                 
