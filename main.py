@@ -1,7 +1,10 @@
 from Connector import DBconnector
+from kamar import kamar
 from login import login
 
-a = "RESEPSIONIS"
-b = "ADMIN"
-print("\t===LOGIN===")
-login.username(input("\tusername : "), input("\tpassword : "))
+
+def main():
+    print("\t===LOGIN===")
+    login.username(input("\tusername : "), input("\tpassword : "))
+    
+main()

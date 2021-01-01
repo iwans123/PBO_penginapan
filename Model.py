@@ -9,7 +9,8 @@ class Model:
         connect = DBconnector()
         query = "SELECT * from " +self.table
         result = connect.executeRead(query)
-        print (result)
+        for i in range (len(result)):
+            print (result[i])
 
     def insert(self,values):
         connect = DBconnector()
@@ -23,6 +24,7 @@ class Model:
         query = query [:-1]
         query += ")"
         connect.execute(query)
+        print ("\t***INSERT BERHASIL***")
 
     def update(self, values, inputanID):
         connect = DBconnector()
@@ -33,6 +35,7 @@ class Model:
         query = query [:-1]
         query += " WHERE id ='%d'" %(inputanID)
         connect.execute(query)
+        print ("\t***UPDATE BERHASIL***")
 
     def search(self, values):
         connect = DBconnector()
@@ -46,3 +49,4 @@ class Model:
         connect = DBconnector()
         query = "DELETE FROM "+self.table+" WHERE id = '%d'" % (inputanID)
         connect.execute(query)
+        print("\t***DELETE BERHASIL***")
