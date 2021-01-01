@@ -21,6 +21,7 @@ class kamar(Model):
         no_kamar = input("no kamar : ")
         status().read()
         status_id = input("status (id) : ")
+        kelas().read()
         kelas_id = input("kelas (id) : ")
         kamar().insert([no_kamar,status_id,kelas_id])
         
