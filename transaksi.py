@@ -24,9 +24,9 @@ class transaksi(Model):
         no_telp = input("\tno_telp : ")
         alamat = input("\talamat : ")
         kamar_id = input("\tkamar (id) : ")
-        cek_in = input("\tcek_in : ")
-        cek_out = input("\tcek_out : ")
-        user_id = input("\tuser (id) : ")
+        cek_in = input("\tcek_in (yyyy-mm-dd) : ")
+        cek_out = input("\tcek_out (yyyy-mm-dd) : ")
+        user_id = input("\tuser_id anda : ")
         transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
         
     def update_transaksi():
@@ -38,9 +38,9 @@ class transaksi(Model):
         no_telp = input("\tno_telp : ")
         alamat = input("\talamat : ")
         kamar_id = input("\tkamar (id) : ")
-        cek_in = input("\tcek_in : ")
-        cek_out = input("\tcek_out : ")
-        user_id = input("\tuser (id) : ")
+        cek_in = input("\tcek_in (yyyy-mm-dd) : ")
+        cek_out = input("\tcek_out (yyyy-mm-dd) : ")
+        user_id = input("\tuser_id anda : ")
         transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id],inputanID)
     
     def delete_transaksi():
