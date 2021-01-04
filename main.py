@@ -27,27 +27,20 @@ class main:
             """)
         menutransaksi = int(input("masukkan pilahan transaksi : "))
         if menutransaksi == 1:
-            print("\t===DAFTAR KAMAR===")
-            kamar().cekamar()
-            nama = input("\tnama : ")
-            no_ktp = input("\tno_ktp : ")
-            no_telp = input("\tno_telp : ")
-            alamat = input("\talamat : ")
-            kamar_id = input("\tkamar (id) : ")
-            cek_in = input("\tcek_in (yyyy-mm-dd) : ")
-            cek_out = input("\tcek_out (yyyy-mm-dd) : ")
-            user_id = input("\tuser_id anda : ")
-            print("\t===HALLO RESEPSIONIS===")
-            transaksi.insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
-            print(input(""))
+            transaksi.insert_transaksi()
+            print(input("PRESS ENTER TO CONTINUE"))
             main.menu_resepsionis()
         elif menutransaksi == 2:
             transaksi.total()
-            print(input(""))
+            print(input("PRESS ENTER TO CONTINUE"))
             main.menu_resepsionis()
             
         elif menutransaksi == 3:
             main.main()
+        else :
+            print("data yang anda masukkan tidak sesuai !!!")
+            print(input("\nPRESS ENTER TO CONTINUE"))
+            main.menu_resepsionis()
             
     def menu_admin():
         print("\t===HALLO ADMIN===")
@@ -80,7 +73,7 @@ class main:
             elif menu_cek == 3:
                 transaksi().read()
                 print(input("PRESS ENTER TO CONTINUE"))
-                admin.menu_admin()
+                main.menu_admin()
             elif menu_cek == 4:
                 main.menu_admin()
             else :

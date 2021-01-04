@@ -1,6 +1,7 @@
 from Model import Model
 from kamar import kamar
 from user import user
+from kelas import kelas
 from Connector import DBconnector
 
 class transaksi(Model):
@@ -10,10 +11,10 @@ class transaksi(Model):
 
     def total():
         connect = DBconnector()
-        query = "SELECT nama,no_ktp,no_telp,alamat,kamar.no_kamar,kelas.nama_kelas,kelas.harga,DATEDIFF(cek_out,cek_in)as selisih,(DATEDIFF(cek_out,cek_in)*(kelas.harga))as TOTAL from transaksi JOIN kamar ON kamar.id = transaksi.kamar_id JOIN kelas ON kamar.kelas_id = kelas.id"
+        query = "SELECT nama,no_ktp,no_telp,alamat,kamar.no_kamar,kelas.nama_kelas,kelas.harga,transaksi.cek_out,DATEDIFF(cek_out,cek_in)as selisih,(DATEDIFF(cek_out,cek_in)*(kelas.harga))as TOTAL from transaksi JOIN kamar ON kamar.id = transaksi.kamar_id JOIN kelas ON kamar.kelas_id = kelas.id"
         result = connect.executeRead(query)
         # print (result)
-        print("[nama][no_ktp][no_telepon][alamat][kamar][kelas][harga][waktu][total]")
+        print("[nama][no_ktp][no_telepon][alamat][kamar][kelas][harga][cek_out][waktu][total]")
         for i in range (len(result)):
             print (result[i])
     
@@ -25,10 +26,15 @@ class transaksi(Model):
         no_telp = input("\tno_telp : ")
         alamat = input("\talamat : ")
         kamar_id = input("\tkamar (id) : ")
+        # no_kamar = input("\tno_kamar : ")
+        # kelas().read()
+        # kelas_id = input("\tkelas kamar (id) : ")
         cek_in = input("\tcek_in (yyyy-mm-dd) : ")
         cek_out = input("\tcek_out (yyyy-mm-dd) : ")
         user_id = input("\tuser_id anda : ")
+        # inptanID = int(kamar_id)
         transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
+        # kamar.update([no_kamar,1,kelas_id],inputanID)
         
     def update_transaksi():
         print("\t\t===DAFTAR TRANSAKSI===")

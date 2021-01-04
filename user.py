@@ -1,9 +1,14 @@
 from Model import Model
 from Connector import DBconnector
+import datetime
 
 class user(Model):
     def __init__(self):
-        super().__init__("user",["nama","alamat","jenis_kelamin","no_telp","username","passw","role_id"])
+        super().__init__("user",["nama","alamat","jenis_kelamin","no_telp","username","passw","role_id","record"])
+        
+    def baru():
+        connect = DBconnector()
+        query = "SELECT"
         
     def insert_user():
         nama = input("nama : ")
@@ -13,7 +18,7 @@ class user(Model):
         username = input("username : ")
         passw = input("password : ")
         role_id = input("1.ADMIN / 2.RESEPSIONIS \t : ")
-        user().insert([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id])
+        user().insert([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id,'GETDATE()'])
         
     def update_user():
         print("\t===DAFTAR USER===")

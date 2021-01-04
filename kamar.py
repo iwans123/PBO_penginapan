@@ -7,6 +7,18 @@ class kamar(Model):
     def __init__(self):
         super(). __init__("kamar",
         ["no_kamar","status_id","kelas_id"])
+    
+    # def kamar_id(kamar_id):
+    #     connect = DBconnector()
+    #     query = "SELECT no_kamar FROM kamar WHERE id = '%d'"%(kamar_id)
+    #     result = connect.executeRead(query)
+    #     print (result[0][0])
+    
+    # def kelas_id(kamar_id):
+    #     connect = DBconnector()
+    #     query = "SELECT kelas_id FROM kamar WHERE id = '%d'"%(kamar_id)
+    #     result = connect.executeRead(query)
+    #     print (result[0][0])
 
     def cekamar (self):
         connect = DBconnector()

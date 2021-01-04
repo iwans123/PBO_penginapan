@@ -9,8 +9,8 @@ class Model:
         connect = DBconnector()
         query = "SELECT * from " +self.table
         result = connect.executeRead(query)
-        for i in range (len(result)):
-            print (result[i])
+        for i in result:
+            print (i[0],"\t",i[1],"\t",i[2])
 
     def insert(self,values):
         connect = DBconnector()
