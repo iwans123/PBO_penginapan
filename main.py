@@ -1,7 +1,6 @@
 from Connector import DBconnector
-from transaksi import transaksi
-from user import user
-from kamar import kamar
+from tabel import user,kamar,kelas,status,transaksi
+
 
 class main:
     def login (inputuser,inputpassw):

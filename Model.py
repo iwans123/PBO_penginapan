@@ -1,4 +1,6 @@
 from Connector import DBconnector
+from prettytable import from_db_cursor
+
 
 class Model:
     def __init__(self,table,column):
@@ -10,8 +12,8 @@ class Model:
         query = "SELECT * from " +self.table
         result = connect.executeRead(query)
         for i in result:
-            print (i[0],"\t",i[1],"\t",i[2])
-
+            print (i)
+        
     def insert(self,values):
         connect = DBconnector()
         query = "INSERT INTO "+self.table+" ("
