@@ -11,8 +11,11 @@ class Model:
         connect = DBconnector()
         query = "SELECT * from " +self.table
         result = connect.executeRead(query)
-        for i in result:
-            print (i)
+        if (len(result[0])) == 9:
+            for i in result:
+                print ("[",i[0],"]","[",i[1],"]","[",i[2],"]","[",i[3],"]","[",i[4],"]","[",i[5],"]","[",i[6],"]","[",i[7],"]","[",i[8],"]")
+        else :
+            print (result)
         
     def insert(self,values):
         connect = DBconnector()

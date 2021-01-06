@@ -15,7 +15,7 @@ class user(Model):
         username = input("username : ")
         passw = input("password : ")
         role_id = input("1.ADMIN / 2.RESEPSIONIS \t : ")
-        user().insert([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id,tgl])
+        user().insert([(nama,"_____________"),(alamat,""),jeni_kelamin,no_telp,username,passw,role_id,tgl])
         
     def update_user():
         tgl = datetime.date.today().strftime('%Y-%m-%d')
@@ -29,7 +29,7 @@ class user(Model):
         username = input("username : ")
         passw = input("password : ")
         role_id = input("1.ADMIN / 2.RESEPSIONIS \t : ")
-        user().update([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id,tgl],inputanID)
+        user().update([(nama+"_______________"),alamat,jeni_kelamin,no_telp,username,passw,role_id,tgl],inputanID)
         
     def delete_user():
         user().read()
@@ -114,7 +114,7 @@ class transaksi(Model):
         cek_out = input("\tcek_out (yyyy-mm-dd) : ")
         user_id = input("\tuser_id anda : ")
         # id_kamar.append(kamar_id)
-        transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
+        transaksi().insert([(nama+"____________________"),no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
         # kamar().update_statusada((id_kamar))
         
         
@@ -132,7 +132,7 @@ class transaksi(Model):
         cek_in = input("\tcek_in (yyyy-mm-dd) : ")
         cek_out = input("\tcek_out (yyyy-mm-dd) : ")
         user_id = input("\tuser_id anda : ")
-        transaksi().update([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id],inputanID)
+        transaksi().update([(nama+"____________________"),no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id],inputanID)
     
     def delete_transaksi():
         transaksi().read()
