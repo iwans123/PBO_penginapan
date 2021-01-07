@@ -62,7 +62,6 @@ class main:
             """)
             menu_cek = int(input("masukkan pilihan data : "))
             if menu_cek == 1:
-                print("[ id]","[-------nama------]","[alamat]","[jenis_kelamin]","[no_telp]","[username]","[password]","[role_id]","[record]")
                 user().read()
                 print(input("PRESS ENTER TO CONTINUE"))
                 main.menu_admin()

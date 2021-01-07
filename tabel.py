@@ -1,6 +1,7 @@
 from Model import Model
 from Connector import DBconnector
 import datetime
+from prettytable import PrettyTable
 
 class user(Model):
     def __init__(self):
@@ -15,7 +16,7 @@ class user(Model):
         username = input("username : ")
         passw = input("password : ")
         role_id = input("1.ADMIN / 2.RESEPSIONIS \t : ")
-        user().insert([(nama,"_____________"),(alamat,""),jeni_kelamin,no_telp,username,passw,role_id,tgl])
+        user().insert([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id,tgl])
         
     def update_user():
         tgl = datetime.date.today().strftime('%Y-%m-%d')
@@ -29,7 +30,7 @@ class user(Model):
         username = input("username : ")
         passw = input("password : ")
         role_id = input("1.ADMIN / 2.RESEPSIONIS \t : ")
-        user().update([(nama+"_______________"),alamat,jeni_kelamin,no_telp,username,passw,role_id,tgl],inputanID)
+        user().update([nama,alamat,jeni_kelamin,no_telp,username,passw,role_id,tgl],inputanID)
         
     def delete_user():
         user().read()
@@ -52,9 +53,13 @@ class kamar(Model):
         connect = DBconnector()
         query = "SELECT kamar.id,no_kamar,kelas.nama_kelas as kelas,kelas.harga,status.nama_status FROM kamar JOIN kelas ON kelas.id=kamar.kelas_id JOIN status ON status.id = kamar.status_id WHERE status.id = 2 ORDER BY no_kamar"
         result = connect.executeRead(query)
-        print("[id][no_kamar][kelas][harga][status]")
+        t = PrettyTable(["id","no_kamar","nama_kelas","harga","nama_status"])
         for i in range (len(result)):
-            print(result[i])
+            t.add_row(result[i])
+        print (t)
+        # print("[id][no_kamar][kelas][harga][status]")
+        # for i in range (len(result)):
+        #     print(result[i])
             
     def inset_kamar():
         kamar().cekamar()
@@ -116,7 +121,7 @@ class transaksi(Model):
         user_id = input("\tuser_id anda : ")
         # id_kamar.append(kamar_id)
         # id_kamar = int(kamar_id)
-        transaksi().insert([(nama+"____________________"),no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
+        transaksi().insert([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
         kamar().update_statusada(int(kamar_id))
         
         
@@ -135,11 +140,9 @@ class transaksi(Model):
         cek_in = input("\tcek_in (yyyy-mm-dd) : ")
         cek_out = input("\tcek_out (yyyy-mm-dd) : ")
         user_id = input("\tuser_id anda : ")
-        transaksi().update([(nama+"____________________"),no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id],inputanID)
+        transaksi().update([nama,no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id],inputanID)
     
     def delete_transaksi():
         transaksi().read()
         inputanID = int(input("masukkan id transaksi yang akan dihapus : "))
         transaksi().delete(inputanID)
-        
-# kamar().update_statusada(2)

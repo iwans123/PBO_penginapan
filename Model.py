@@ -1,5 +1,5 @@
 from Connector import DBconnector
-
+from prettytable import PrettyTable
 
 class Model:
     def __init__(self,table,column):
@@ -10,11 +10,18 @@ class Model:
         connect = DBconnector()
         query = "SELECT * from " +self.table
         result = connect.executeRead(query)
-        if (len(result[0])) == 9:
-            for i in result:
-                print ("[",i[0],"]","[",i[1],"]","[",i[2],"]","[",i[3],"]","[",i[4],"]","[",i[5],"]","[",i[6],"]","[",i[7],"]","[",i[8],"]")
-        else :
-            print (result)
+        x = ["id"]
+        for j in range (len(self.column)):
+            x.append(self.column[j])
+        t = PrettyTable(x)
+        for i in range (len(result)):
+            t.add_row(result[i])
+        print (t)
+        # if (len(result[0])) == 9:
+        #     for i in result:
+        #         print ("[",i[0],"]","[",i[1],"]","[",i[2],"]","[",i[3],"]","[",i[4],"]","[",i[5],"]","[",i[6],"]","[",i[7],"]","[",i[8],"]")
+        # else :
+        #     print (result)
         
     def insert(self,values):
         connect = DBconnector()
