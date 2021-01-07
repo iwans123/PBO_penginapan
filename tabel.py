@@ -41,11 +41,12 @@ class kamar(Model):
         super(). __init__("kamar",
         ["no_kamar","status_id","kelas_id"])
 
-    # def update_statusada(id_kamar):
-    #     connect = DBconnector()
-    #     query = "SELECT no_kamar,kelas_id FROM kamar WHERE id ='%d'" %(id_kamar)
-    #     result = connect.executeRead(query)
-    #     kamar().update([(result[0][0]),1,(result[0][1])],id_kamar)
+    def update_statusada(self,kamar_id):
+        connect = DBconnector()
+        query = "SELECT no_kamar,kelas_id FROM kamar WHERE id = '%d'" %(kamar_id)
+        result = connect.executeRead(query)
+        kamar().update([(result[0][0]),"1",(str(result[0][1]))],kamar_id)
+        # print((result[0][0]),(result[0][1]))
 
     def cekamar (self):
         connect = DBconnector()
@@ -114,8 +115,10 @@ class transaksi(Model):
         cek_out = input("\tcek_out (yyyy-mm-dd) : ")
         user_id = input("\tuser_id anda : ")
         # id_kamar.append(kamar_id)
+        # id_kamar = int(kamar_id)
         transaksi().insert([(nama+"____________________"),no_ktp,no_telp,alamat,kamar_id,cek_in,cek_out,user_id])
-        # kamar().update_statusada((id_kamar))
+        kamar().update_statusada(int(kamar_id))
+        
         
         
     def update_transaksi():
@@ -138,3 +141,5 @@ class transaksi(Model):
         transaksi().read()
         inputanID = int(input("masukkan id transaksi yang akan dihapus : "))
         transaksi().delete(inputanID)
+        
+# kamar().update_statusada(2)

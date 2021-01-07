@@ -1,5 +1,4 @@
 from Connector import DBconnector
-from prettytable import from_db_cursor
 
 
 class Model:
