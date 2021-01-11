@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2020 at 08:26 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Waktu pembuatan: 11 Jan 2021 pada 17.02
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kamar`
+-- Struktur dari tabel `kamar`
 --
 
 CREATE TABLE `kamar` (
@@ -35,19 +35,22 @@ CREATE TABLE `kamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kamar`
+-- Dumping data untuk tabel `kamar`
 --
 
 INSERT INTO `kamar` (`id`, `no_kamar`, `status_id`, `kelas_id`) VALUES
-(1, 'A01', 2, 1),
-(2, 'B01', 2, 2),
-(3, 'C03', 2, 3),
-(4, 'A02', 2, 1);
+(1, 'A01', 1, 1),
+(2, 'B01', 1, 2),
+(3, 'C03', 1, 3),
+(4, 'A02', 1, 1),
+(5, 'A03', 2, 1),
+(6, 'A04', 2, 1),
+(7, 'A05', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelas`
+-- Struktur dari tabel `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -57,7 +60,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelas`
+-- Dumping data untuk tabel `kelas`
 --
 
 INSERT INTO `kelas` (`id`, `nama_kelas`, `harga`) VALUES
@@ -68,7 +71,7 @@ INSERT INTO `kelas` (`id`, `nama_kelas`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -77,7 +80,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id`, `nama_role`) VALUES
@@ -87,7 +90,7 @@ INSERT INTO `role` (`id`, `nama_role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `status`
+-- Struktur dari tabel `status`
 --
 
 CREATE TABLE `status` (
@@ -96,7 +99,7 @@ CREATE TABLE `status` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `status`
+-- Dumping data untuk tabel `status`
 --
 
 INSERT INTO `status` (`id`, `nama_status`) VALUES
@@ -106,7 +109,7 @@ INSERT INTO `status` (`id`, `nama_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -122,16 +125,19 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
 INSERT INTO `transaksi` (`id`, `nama`, `no_ktp`, `no_telp`, `alamat`, `kamar_id`, `cek_in`, `cek_out`, `user_id`) VALUES
-(1, 'iwan', '123', '123', 'TA', 1, '2020-12-31 00:00:00', '2021-01-05 00:00:00', 1);
+(1, 'iwan', '123', '123', 'TA', 1, '2020-12-31 00:00:00', '2021-01-05 00:00:00', 1),
+(3, 'BAGUS', '082', '0355', 'TA', 2, '2020-12-31 00:00:00', '2021-01-10 00:00:00', 2),
+(5, 'JONO', '0355', '081', 'TA', 6, '2021-01-02 00:00:00', '2021-01-05 00:00:00', 2),
+(6, 'RIFKY', '0355', '085', 'TA', 7, '2021-01-02 00:00:00', '2021-01-05 00:00:00', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -139,26 +145,28 @@ CREATE TABLE `user` (
   `nama` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `jenis_kelamin` enum('L','P') NOT NULL,
-  `no.telp` varchar(50) NOT NULL,
+  `no_telp` varchar(50) NOT NULL,
   `username` varchar(32) NOT NULL,
   `passw` varchar(32) NOT NULL,
-  `role_id` tinyint(1) NOT NULL
+  `role_id` tinyint(1) NOT NULL,
+  `record` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `nama`, `alamat`, `jenis_kelamin`, `no.telp`, `username`, `passw`, `role_id`) VALUES
-(1, 'BIMA SETYAWAN', 'TA', 'L', '081336797499', 'IWAN', 'IWAN', 1),
-(2, 'DENTA MUHAMMAD FEBRISUDA', 'NG', 'L', '081336797499', 'DENS', 'DENS', 2);
+INSERT INTO `user` (`id`, `nama`, `alamat`, `jenis_kelamin`, `no_telp`, `username`, `passw`, `role_id`, `record`) VALUES
+(1, 'BIMA SETYAWAN', 'TA', 'L', '081336797499', 'IWAN', 'IWAN', 1, '0000-00-00 00:00:00'),
+(2, 'DENTA MUHAMMAD FEBRISUDA', 'NG', 'L', '081336797499', 'DENS', 'DENS', 2, '0000-00-00 00:00:00'),
+(3, 'INTAN SETYOWATI', 'TA', 'P', '081', 'WATI', 'WATI', 2, '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `kamar`
+-- Indeks untuk tabel `kamar`
 --
 ALTER TABLE `kamar`
   ADD PRIMARY KEY (`id`),
@@ -166,25 +174,25 @@ ALTER TABLE `kamar`
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- Indexes for table `kelas`
+-- Indeks untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role`
+-- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `status`
+-- Indeks untuk tabel `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `transaksi`
+-- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id`),
@@ -192,54 +200,54 @@ ALTER TABLE `transaksi`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `kamar`
+-- AUTO_INCREMENT untuk tabel `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `transaksi`
+-- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `kamar`
+-- Ketidakleluasaan untuk tabel `kamar`
 --
 ALTER TABLE `kamar`
   ADD CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kamar_ibfk_2` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `transaksi`
+-- Ketidakleluasaan untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`kamar_id`) REFERENCES `kamar` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user`
+-- Ketidakleluasaan untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
